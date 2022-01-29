@@ -20,19 +20,34 @@ namespace AGC_Technowizz {
 
       // Načtení plnosti skladu
       LoadDataFromDatabase();
+
+      using (sr = new StreamReader("./test_data.csv"))
+      {
+        sr.ReadLine();
+        while (!sr.EndOfStream)
+        {
+          string[] items_in_line = sr.ReadLine().Split(';');
+          string number = items_in_line[7].Trim();
+          string name = items_in_line[5].Trim();
+          containerCode_name.Add(number, name.Split(' ')[2].Trim());
+        }
+      }
     }
 
+    private static Dictionary<string, string> containerCode_name = new Dictionary<string, string>();
     public static string GetCarBrandFromContainerCode(string containerCode) {
       /*
        * 
        *  Zde se uskutečňuje požadavek na SAP.
-       *  Aplikace potřebuje z kódu palety získat značku auta, konkrétně řetězec o délce dvou nebo tří písmen (např. "TOY" nebo "MS").
+       *  Aplikace potřebuje z kódu palety získat značku auta, konkrétně řetězec o délce dvou nebo tří písmen (např. "TO" nebo "MS").
        *  Podle značky auta se zjistí zóna, kde by se měla paleta nacházet (soubor Config.conf).
        *  K těmto datům my nemáme přístup, proto pro správnou funkčnost aplikace je potřeba toto implementovat.
        * 
        */
 
-      return new string[] { "PO", "MS", "SK", "BM" }.ElementAt(new Random().Next(4)); // Přepsat!
+      return containerCode_name.ContainsKey(containerCode) ? 
+               containerCode_name[containerCode] : 
+               new string[] { "PO", "MS", "SK", "BM" }.ElementAt(new Random().Next(4));
     }
 
     public static string GetZoneFromCarBrand(string carBrand) {
