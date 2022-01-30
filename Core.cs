@@ -21,13 +21,14 @@ namespace AGC_Technowizz {
       // Načtení plnosti skladu
       LoadDataFromDatabase();
 
+      // Načtení testovacích dat
       using (sr = new StreamReader("./test_data.csv"))
       {
         sr.ReadLine();
         while (!sr.EndOfStream)
         {
           string[] items_in_line = sr.ReadLine().Split(';');
-          string number = items_in_line[7].Trim();
+          string number = Convert.ToInt32(items_in_line[7]).ToString();
           string name = items_in_line[5].Trim();
           containerCode_name.Add(number, name.Split(' ')[2].Trim());
         }
@@ -45,9 +46,12 @@ namespace AGC_Technowizz {
        * 
        */
 
-      return containerCode_name.ContainsKey(containerCode) ? 
-               containerCode_name[containerCode] : 
-               new string[] { "PO", "MS", "SK", "BM" }.ElementAt(new Random().Next(4));
+      if (containerCode_name.ContainsKey(containerCode))
+      {
+        return containerCode_name[containerCode];
+      }
+      System.Windows.Forms.MessageBox.Show($"Kód neexistuje\nPoužití náhodné zóny");
+      return new string[] { "PO", "MS", "SK", "BM" }.ElementAt(new Random().Next(4));
     }
 
     public static string GetZoneFromCarBrand(string carBrand) {
@@ -63,43 +67,47 @@ namespace AGC_Technowizz {
         }
       }
 
-      // Pokud je definováno více zón
-      if (carZonePairs[carBrand.ToUpper()].Contains(","))
+      if (carZonePairs.ContainsKey(carBrand.ToUpper()))
       {
-        string[] zones = carZonePairs[carBrand.ToUpper()].Split(',');
-        bool full;
-        string zone = "";
-
-        foreach (string _zone in zones)
+        // Pokud je definováno více zón
+        if (carZonePairs[carBrand.ToUpper()].Contains(","))
         {
-          zone = _zone;
-          full = IsZoneFull(zone);
-          if (!full)
-          {
-            // Alespoň jedna zóna není plná (definováno více zón)
-            AddToStorage(zone);
-            return zone;
-          }
-        }
-        // Všechny zóny jsou (definováno více zón)
-        return $"{FullErrorMessage}-{zone}";
-      }
+          string[] zones = carZonePairs[carBrand.ToUpper()].Split(',');
+          bool full;
+          string zone = "";
 
-      if (!IsZoneFull(carZonePairs[carBrand.ToUpper()]))
-      {
-        // Není plná zóna (pouze 1 definována)
-        AddToStorage(carZonePairs[carBrand.ToUpper()]);
-        return carZonePairs[carBrand.ToUpper()];
+          foreach (string _zone in zones)
+          {
+            zone = _zone;
+            full = IsZoneFull(zone);
+            if (!full)
+            {
+              // Alespoň jedna zóna není plná (definováno více zón)
+              AddToStorage(zone);
+              return zone;
+            }
+          }
+          // Všechny zóny jsou plné (definováno více zón)
+          return $"{FullErrorMessage}-{zone}";
+        }
+
+        if (!IsZoneFull(carZonePairs[carBrand.ToUpper()]))
+        {
+          // Není plná zóna (pouze 1 definována)
+          AddToStorage(carZonePairs[carBrand.ToUpper()]);
+          return carZonePairs[carBrand.ToUpper()];
+        }
+        // Je plná zóna (pouze 1 definována)
+        return $"{FullErrorMessage}-{carZonePairs[carBrand.ToUpper()]}";
       }
-      // Je plná zóna (pouze 1 definována)
-      return $"{FullErrorMessage}-{carZonePairs[carBrand.ToUpper()]}";
+      return "Neznámá značka";
     }
 
     public static bool IsZoneFull(string zone)
     {
       zone = zone.Trim().ToUpper();
-
       // Testování plnosti zóny
+
       if (Storage[zone][0] >= Storage[zone][1]) return true;
       return false;
     }

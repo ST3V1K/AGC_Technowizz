@@ -58,9 +58,16 @@ namespace AGC_Technowizz {
         string carBrand = Core.GetCarBrandFromContainerCode($"{ containerCode }");
         string zone = Core.GetZoneFromCarBrand(carBrand);
 
+        ContainerCodeTextField.Clear();
         HideError();
         ShowZone(zone);
       }
+    }
+
+    private void SubmitOnEnter(object sender, EventArgs e)
+    {
+      if (ContainerCodeTextField.Text.EndsWith("\n") || ContainerCodeTextField.Text.EndsWith("\r"))
+        SubmitButton.PerformClick();
     }
   }
 }
