@@ -34,7 +34,7 @@ namespace AGC_Technowizz {
       // ContainerCodeTextField
       // 
       this.ContainerCodeTextField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ContainerCodeTextField.Location = new System.Drawing.Point(134, 103);
+      this.ContainerCodeTextField.Location = new System.Drawing.Point(133, 103);
       this.ContainerCodeTextField.Multiline = true;
       this.ContainerCodeTextField.Name = "ContainerCodeTextField";
       this.ContainerCodeTextField.Size = new System.Drawing.Size(384, 20);
@@ -45,7 +45,7 @@ namespace AGC_Technowizz {
       // 
       this.ContainerCodeLabel.AutoSize = true;
       this.ContainerCodeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ContainerCodeLabel.Location = new System.Drawing.Point(289, 71);
+      this.ContainerCodeLabel.Location = new System.Drawing.Point(290, 71);
       this.ContainerCodeLabel.Name = "ContainerCodeLabel";
       this.ContainerCodeLabel.Size = new System.Drawing.Size(71, 16);
       this.ContainerCodeLabel.TabIndex = 1;
@@ -53,10 +53,10 @@ namespace AGC_Technowizz {
       // 
       // SubmitButton
       // 
-      this.SubmitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.SubmitButton.Location = new System.Drawing.Point(134, 176);
+      this.SubmitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+      this.SubmitButton.Location = new System.Drawing.Point(267, 158);
       this.SubmitButton.Name = "SubmitButton";
-      this.SubmitButton.Size = new System.Drawing.Size(384, 81);
+      this.SubmitButton.Size = new System.Drawing.Size(117, 51);
       this.SubmitButton.TabIndex = 2;
       this.SubmitButton.Text = "Zadat";
       this.SubmitButton.UseVisualStyleBackColor = true;
@@ -65,10 +65,10 @@ namespace AGC_Technowizz {
       // ZoneLabel
       // 
       this.ZoneLabel.AutoSize = true;
-      this.ZoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ZoneLabel.Location = new System.Drawing.Point(235, 404);
+      this.ZoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Bold);
+      this.ZoneLabel.Location = new System.Drawing.Point(98, 212);
       this.ZoneLabel.Name = "ZoneLabel";
-      this.ZoneLabel.Size = new System.Drawing.Size(175, 108);
+      this.ZoneLabel.Size = new System.Drawing.Size(485, 302);
       this.ZoneLabel.TabIndex = 3;
       this.ZoneLabel.Text = "XY";
       this.ZoneLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,7 +79,7 @@ namespace AGC_Technowizz {
       this.ErrorLabel.AutoSize = true;
       this.ErrorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ErrorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-      this.ErrorLabel.Location = new System.Drawing.Point(131, 128);
+      this.ErrorLabel.Location = new System.Drawing.Point(133, 128);
       this.ErrorLabel.Name = "ErrorLabel";
       this.ErrorLabel.Size = new System.Drawing.Size(232, 16);
       this.ErrorLabel.TabIndex = 4;

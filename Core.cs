@@ -88,7 +88,8 @@ namespace AGC_Technowizz {
             }
           }
           // Všechny zóny jsou plné (definováno více zón)
-          return $"{FullErrorMessage}-{zone}";
+          System.Windows.Forms.MessageBox.Show(FullErrorMessage);
+          return zone;
         }
 
         if (!IsZoneFull(carZonePairs[carBrand.ToUpper()]))
@@ -98,7 +99,8 @@ namespace AGC_Technowizz {
           return carZonePairs[carBrand.ToUpper()];
         }
         // Je plná zóna (pouze 1 definována)
-        return $"{FullErrorMessage}-{carZonePairs[carBrand.ToUpper()]}";
+        System.Windows.Forms.MessageBox.Show(FullErrorMessage);
+        return carZonePairs[carBrand.ToUpper()];
       }
       return "Neznámá značka";
     }
