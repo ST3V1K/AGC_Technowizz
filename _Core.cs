@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 
 namespace AGC_Technowizz {
-  static public class Core {
+  static public class _Core {
     private static string CONFIG = "";
     const string FullErrorMessage = "Plno";
     public static Dictionary<string, int[]> Storage = new Dictionary<string, int[]>();
